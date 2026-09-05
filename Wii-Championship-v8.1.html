@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Wii Championship">
+<title>Wii Championship – v8.1</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#0b1020;--panel:#121a2e;--card:#18233c;--card2:#10192d;--line:#2b3958;--text:#f5f7fb;--muted:#aab5ca;--accent:#38bdf8;--ok:#4ade80;--warn:#facc15;--danger:#fb7185;--shadow:0 16px 44px rgba(0,0,0,.24)}
+*{box-sizing:border-box}html{color-scheme:dark;-webkit-text-size-adjust:100%}
+button,.tab,.place-btn{-webkit-tap-highlight-color:transparent;touch-action:manipulation}body{margin:0;min-height:100vh;background:linear-gradient(180deg,#0b1020,#0d1426 42%,#0b1020);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1320px;margin:0 auto;padding:14px}.hidden{display:none!important}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}.title-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}h1,h2,h3,p{margin:0}h1{font-size:clamp(1.35rem,3vw,2rem)}h2{font-size:1.1rem}.sub{color:var(--muted);font-size:.9rem;margin-top:4px}.version{display:inline-flex;align-items:center;min-height:27px;padding:3px 9px;border:1px solid #4a617f;border-radius:999px;color:#c9d7eb;font-size:.77rem;font-weight:800}.save{display:inline-flex;gap:6px;align-items:center;color:var(--muted);font-size:.78rem}.save:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok)}.toolbar{display:flex;gap:7px;flex-wrap:wrap}.btn{min-height:50px;border:1px solid var(--line);border-radius:12px;background:#111a30;color:var(--text);padding:9px 13px;font-weight:700}.btn.primary{background:linear-gradient(180deg,#0ea5e9,#0284c7);border-color:#38bdf8}.btn.danger{background:#2b141b;border-color:#713343;color:#ffd5dc}.btn:disabled{opacity:.42;cursor:not-allowed}.input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:12px;background:#0d162a;color:var(--text);padding:10px 11px;outline:none;font-size:16px}.input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,.12)}.tabs{display:flex;gap:5px;overflow:auto;border:1px solid var(--line);background:rgba(10,16,31,.7);border-radius:15px;padding:5px;margin-bottom:12px}.tab{min-height:43px;border:0;border-radius:10px;background:transparent;color:var(--muted);padding:8px 13px;font-weight:750;white-space:nowrap}.tab.active{background:#1b2946;color:var(--text)}.progress{display:grid;grid-template-columns:repeat(6,minmax(75px,1fr));gap:6px;overflow:auto;margin-bottom:12px}.step{min-width:92px;border:1px solid var(--line);border-radius:12px;background:#10192d;padding:9px}.step .n{font-size:.7rem;color:var(--muted)}.step .t{font-size:.8rem;font-weight:750;margin-top:2px}.step.active{border-color:var(--accent);background:#13263d}.step.done{border-color:#28563a;background:#11241b}.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:12px}.panel{border:1px solid var(--line);background:rgba(18,26,46,.92);border-radius:17px;box-shadow:var(--shadow)}.pad{padding:15px}.stack{display:flex;flex-direction:column;gap:12px}.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:12px}.notice{border:1px dashed var(--line);border-radius:12px;padding:11px;color:var(--muted);font-size:.86rem;line-height:1.45}.notice.ok{border-style:solid;border-color:#28563a;background:#11241b;color:#bceccb}.notice.warn{border-style:solid;border-color:#6e5c1c;background:#29220f;color:#f9e59c}.notice.bad{border-style:solid;border-color:#713343;background:#2b141b;color:#ffd0d8}.card{border:1px solid var(--line);border-radius:14px;background:var(--card2);padding:11px}.stat{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px}.stat .k{font-size:.76rem;color:var(--muted)}.stat .v{font-size:1.12rem;font-weight:850;margin-top:4px}.players{display:flex;flex-direction:column;gap:8px}.player-row{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:8px;align-items:center}.seed{display:grid;place-items:center;color:var(--muted);font-weight:800}.remove{width:44px;min-height:44px;border:1px solid var(--line);border-radius:10px;background:#10192d;color:var(--text)}.disciplines{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:7px}.check{display:flex;align-items:center;gap:8px;min-height:42px;border:1px solid var(--line);border-radius:11px;background:#10192d;padding:8px 10px}.check input{width:19px;height:19px}.rules{display:grid;gap:7px;font-size:.84rem;color:var(--muted)}.rules b{color:var(--text)}.race-table{width:100%;border-collapse:separate;border-spacing:0 7px}.race-table th{font-size:.77rem;color:var(--muted);text-align:left;padding:0 7px}.race-table td{background:#10192d;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:7px}.race-table td:first-child{border-left:1px solid var(--line);border-radius:11px 0 0 11px}.race-table td:last-child{border-right:1px solid var(--line);border-radius:0 11px 11px 0}.race-table select{min-width:74px}.sitout{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #5a5227;background:#26220f;border-radius:13px;padding:10px 12px}.sitout strong{color:#f9e59c}.challenge{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px}.vs{text-align:center;color:var(--muted);font-weight:900}.choice{min-height:68px;border:1px solid var(--line);border-radius:13px;background:#10192d;padding:10px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:850}.winner-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}.duels{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}.duel{border:1px solid var(--line);border-radius:14px;background:#10192d;padding:11px}.duel .disc{font-size:.78rem;color:var(--muted);margin-bottom:8px}.duel .pair{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:850;text-align:center}.duel .pair span{min-width:0;flex:1}.duel-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.table-wrap{overflow:auto}.score-table{width:100%;border-collapse:collapse;min-width:580px}.score-table th,.score-table td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left}.score-table th{font-size:.75rem;color:var(--muted)}.score-table td:first-child{font-weight:850}.rank{width:30px;color:var(--muted)}.leader td{background:rgba(56,189,248,.07)}.log{display:flex;flex-direction:column;gap:8px}.log-item{border-left:3px solid #334763;background:#10192d;border-radius:0 12px 12px 0;padding:9px 11px}.log-item .time{font-size:.72rem;color:var(--muted)}.log-item .text{margin-top:3px;font-size:.88rem}.big-winner{text-align:center;padding:20px;border:1px solid #2b7b55;background:linear-gradient(180deg,#123323,#0d2419);border-radius:17px}.big-winner .name{font-size:clamp(2rem,6vw,4rem);font-weight:950;margin-top:6px}.final-card{text-align:center}.final-card .discipline{font-size:1.15rem;font-weight:900;margin:8px 0 12px}.mini{font-size:.78rem;color:var(--muted)}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.progress{grid-template-columns:repeat(6,115px)}}@media(max-width:560px){.app{padding:10px}.challenge{grid-template-columns:1fr}.vs{padding:2px}.winner-buttons,.duel-actions{grid-template-columns:1fr}.toolbar{width:100%}.toolbar .btn{flex:1}.race-table{font-size:.9rem}.race-table select{min-width:64px}}
+
+.tablet-races{display:flex;flex-direction:column;gap:10px}
+.race-player-card{border:1px solid var(--line);border-radius:15px;background:#10192d;padding:12px}
+.race-player-name{font-weight:850;font-size:1.02rem;margin-bottom:10px}
+.race-picks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.race-pick-box{border:1px solid var(--line);border-radius:12px;padding:9px;background:#0d1629}
+.race-pick-title{font-size:.76rem;color:var(--muted);margin-bottom:7px}
+.place-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.place-btn{min-height:50px;border:1px solid var(--line);border-radius:10px;background:#17213a;color:var(--text);font-weight:900;font-size:1rem}
+.place-btn.selected{background:#0ea5e9;border-color:#67d1fa;color:#fff;box-shadow:0 0 0 2px rgba(56,189,248,.16)}
+@media(max-width:1050px){
+  .layout{grid-template-columns:1fr}
+  .app{max-width:900px}
+  .tabs{position:sticky;top:6px;z-index:50;backdrop-filter:blur(10px);background:rgba(10,16,31,.94)}
+  .tab{min-height:50px;padding:10px 16px}
+}
+@media(max-width:760px){
+  .app{padding:10px}
+  .progress{grid-template-columns:repeat(6,108px);padding-bottom:2px}
+  .step{min-width:108px;padding:10px}
+  .pad{padding:13px}
+  .race-picks{grid-template-columns:1fr}
+  .place-btn{min-height:54px;font-size:1.06rem}
+  .choice{min-height:74px}
+}
+@media(max-width:500px){
+  .btn{min-height:54px}
+  .winner-buttons,.duel-actions{grid-template-columns:1fr}
+  .tabs{gap:3px}.tab{padding:9px 11px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div><div class="title-row"><h1>Wii Championship</h1><span class="version">v8.1</span><span class="save" id="saveStatus">lokal gespeichert</span></div><p class="sub" id="headerSub">Geführtes Turnier für 4–5 Personen</p></div><div class="toolbar"><button id="undoBtn" class="btn" type="button" disabled>↶ Rückgängig</button><button id="exportQuickBtn" class="btn" type="button">Export</button></div></header>
+<nav class="tabs"><button class="tab active" data-tab="flow" type="button">Ablauf</button><button class="tab" data-tab="standings" type="button">Tabelle</button><button class="tab" data-tab="protocol" type="button">Protokoll</button><button class="tab" data-tab="settings" type="button">Einstellungen</button></nav>
+<div id="progress" class="progress"></div>
+<main>
+<section id="view-flow" class="stack"><div id="flowContent"></div></section>
+<section id="view-standings" class="hidden stack"><section class="panel pad"><div class="section-head"><div><h2>Gesamtwertung</h2><p class="sub">Wird nach jeder abgeschlossenen Wertung automatisch aktualisiert.</p></div></div><div id="standingsContent"></div></section></section>
+<section id="view-protocol" class="hidden stack"><section class="panel pad"><div class="section-head"><div><h2>Turnierprotokoll</h2><p class="sub">Auslosungen, Ergebnisse und Punkte bleiben nachvollziehbar.</p></div></div><div id="protocolContent" class="log"></div></section></section>
+<section id="view-settings" class="hidden stack"><section class="panel pad stack"><div><h2>Sichern & Verwaltung</h2><p class="sub">Alles wird automatisch auf diesem Gerät gespeichert.</p></div><div class="toolbar"><button id="exportBtn" class="btn primary" type="button">Turnierdatei exportieren</button><label class="btn" style="display:flex;align-items:center;justify-content:center">Turnierdatei importieren<input id="importInput" type="file" accept=".json,application/json" hidden></label></div><div class="notice">Für den Wechsel zwischen Windows und iPad: exportieren → JSON-Datei übertragen → auf dem anderen Gerät importieren.</div><button id="resetBtn" class="btn danger" type="button">Komplettes Turnier zurücksetzen</button></section></section>
+</main></div>
+<script>
+(() => {
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const STORAGE='wii-championship-v8';
+const DEFAULT_DISCIPLINES=['Schwertkampf','Tischtennis','Bowling','Basketball','Bogenschießen','Frisbee','Golf','Wakeboarding','Power Cruising','Kanu'];
+function fresh(){return{version:'8.1',started:false,phase:'setup',participants:Array.from({length:4},()=>({id:uid(),name:''})),disciplines:[...DEFAULT_DISCIPLINES],scoreEvents:[],protocol:[],history:[],mk1:null,resort:null,mk2:null,final:null,tiebreak:null,championId:null}}
+let state=fresh();
+function uid(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4)}
+function clone(v){return JSON.parse(JSON.stringify(v))}
+function clean(v,max=40){return String(v??'').trim().slice(0,max)}
+function p(id){return state.participants.find(x=>x.id===id)||null}
+function name(id){return p(id)?.name||'—'}
+function rnd(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function shuffled(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function now(){return new Date().toISOString()}
+function localTime(iso){try{return new Date(iso).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}catch{return''}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state));$('#saveStatus').textContent='lokal gespeichert'}catch{$('#saveStatus').textContent='Speichern fehlgeschlagen'}}
+function load(){try{const raw=localStorage.getItem(STORAGE);if(!raw)return;const obj=JSON.parse(raw);if(obj&&obj.version==='8.0'&&Array.isArray(obj.participants)){state=obj;if(!Array.isArray(state.history))state.history=[]}}catch{}}
+function snapshot(label){const snap=clone(state);snap.history=[];state.history.push({label,state:snap});if(state.history.length>25)state.history.shift()}
+function log(text){state.protocol.push({time:now(),text})}
+function addScore(playerId,points,kind,label,win=false){state.scoreEvents.push({id:uid(),playerId,points,kind,label,win})}
+function totals(){const m=new Map(state.participants.map(x=>[x.id,{id:x.id,name:x.name,total:0,mk:0,wins:0}]));for(const e of state.scoreEvents){const r=m.get(e.playerId);if(!r)continue;r.total+=Number(e.points)||0;if(e.kind==='mk')r.mk+=Number(e.points)||0;if(e.win)r.wins++}return[...m.values()]}
+function ranked(){return totals().sort((a,b)=>b.total-a.total||b.wins-a.wins||b.mk-a.mk||a.name.localeCompare(b.name,'de'))}
+function randomDiscipline(exclude=[]){const pool=state.disciplines.filter(d=>!exclude.includes(d));return rnd(pool.length?pool:state.disciplines)}
+function uniqueNames(){const n=state.participants.map(x=>clean(x.name).toLowerCase());return new Set(n).size===n.length}
+function setupValid(){return(state.participants.length===4||state.participants.length===5)&&state.participants.every(x=>clean(x.name))&&uniqueNames()&&state.disciplines.length>=3}
+function prepareMK(blockNo){const prev=blockNo===2?state.mk1?.sitOutId:null;let sitOutId=null;if(state.participants.length===5){const candidates=state.participants.map(x=>x.id).filter(id=>id!==prev);sitOutId=rnd(candidates)}const activeIds=state.participants.map(x=>x.id).filter(id=>id!==sitOutId);const obj={blockNo,sitOutId,activeIds,race1:{},race2:{},done:false,winnerId:null,challenge:{discipline:null,opponentId:null,winnerId:null,done:false}};if(blockNo===1)state.mk1=obj;else state.mk2=obj;if(sitOutId)log(`Mario-Kart-Block ${blockNo}: ${name(sitOutId)} setzt aus und erhält 5 neutrale Ausgleichspunkte.`)}
+function startTournament(){if(!setupValid())return;snapshot('Turnierstart');state.started=true;state.phase='mk1_races';state.scoreEvents=[];state.protocol=[];state.championId=null;log(`Turnier gestartet mit ${state.participants.length} Personen.`);prepareMK(1);save();render()}
+function readRaceInputs(blockNo){const mk=blockNo===1?state.mk1:state.mk2;return {r1:{...(mk.race1||{})},r2:{...(mk.race2||{})}}}
+function validPlacements(obj){const vals=Object.values(obj);return vals.length===4&&vals.every(v=>[1,2,3,4].includes(v))&&new Set(vals).size===4}
+function racePoints(place){return({1:4,2:3,3:2,4:1})[place]||0}
+function completeMK(blockNo){const mk=blockNo===1?state.mk1:state.mk2;if(!mk||mk.done)return;const{r1,r2}=readRaceInputs(blockNo);if(!validPlacements(r1)||!validPlacements(r2)){alert('In jedem Rennen müssen die Plätze 1, 2, 3 und 4 genau einmal vergeben sein.');return}snapshot(`Mario Kart ${blockNo} abschließen`);mk.race1=r1;mk.race2=r2;mk.done=true;const sums={};for(const id of mk.activeIds){const a=racePoints(r1[id]),b=racePoints(r2[id]);sums[id]=a+b;addScore(id,a,'mk',`Mario Kart ${blockNo} – Rennen 1 (${r1[id]}. Platz)`);addScore(id,b,'mk',`Mario Kart ${blockNo} – Rennen 2 (${r2[id]}. Platz)`)}if(mk.sitOutId)addScore(mk.sitOutId,5,'mk',`Mario Kart ${blockNo} – Ausgleich fürs Aussetzen`);const order=[...mk.activeIds].sort((a,b)=>sums[b]-sums[a]||r2[a]-r2[b]);mk.winnerId=order[0];addScore(mk.winnerId,0,'mkblock',`Mario Kart ${blockNo} – Blockgewinn`,true);state.phase=blockNo===1?'mk1_challenge':'mk2_challenge';log(`Mario Kart ${blockNo}: ${name(mk.winnerId)} gewinnt den Block. Bei Gleichstand entschied die bessere Platzierung im 2. Rennen.`);save();render()}
+function drawChallengeOpponent(blockNo){const mk=blockNo===1?state.mk1:state.mk2;const select=$(`#challengeDiscipline${blockNo}`),discipline=select?.value||'';if(!discipline){alert('Bitte zuerst eine Resort-Disziplin auswählen.');return}snapshot(`Challenge ${blockNo} auslosen`);mk.challenge.discipline=discipline;mk.challenge.opponentId=rnd(state.participants.map(x=>x.id).filter(id=>id!==mk.winnerId));log(`Challenge ${blockNo}: ${name(mk.winnerId)} wählt ${discipline}; Gegner ausgelost: ${name(mk.challenge.opponentId)}.`);save();render()}
+function finishChallenge(blockNo,winnerId){const mk=blockNo===1?state.mk1:state.mk2;if(!mk.challenge.opponentId||mk.challenge.done||![mk.winnerId,mk.challenge.opponentId].includes(winnerId))return;snapshot(`Challenge ${blockNo} Ergebnis`);mk.challenge.winnerId=winnerId;mk.challenge.done=true;addScore(winnerId,2,'challenge',`Challenge ${blockNo}: ${mk.challenge.discipline}`,true);log(`Challenge ${blockNo}: ${name(winnerId)} gewinnt ${mk.challenge.discipline} und erhält +2 Punkte.`);if(blockNo===1){prepareResort();state.phase='resort'}else prepareFinal();save();render()}
+function prepareResort(){const ids=shuffled(state.participants.map(x=>x.id)),used=[],duels=[];for(let i=0;i<4;i+=2){const discipline=randomDiscipline(used);used.push(discipline);duels.push({id:uid(),a:ids[i],b:ids[i+1],discipline,winnerId:null,done:false})}const leftover=ids.length===5?ids[4]:null;state.resort={duels,leftoverId:leftover,catchup:null,done:false};log(`Resort-Runde ausgelost${leftover?`; ${name(leftover)} erhält anschließend ein Nachholduell.`:'.'}`)}
+function finishResortDuel(duelId,winnerId){const duel=state.resort?.duels.find(d=>d.id===duelId);if(!duel||duel.done||![duel.a,duel.b].includes(winnerId))return;snapshot('Resort-Duell Ergebnis');duel.winnerId=winnerId;duel.done=true;addScore(winnerId,2,'resort',`Resort-Runde: ${duel.discipline}`,true);log(`Resort-Runde: ${name(winnerId)} gewinnt gegen ${name(winnerId===duel.a?duel.b:duel.a)} in ${duel.discipline} (+2).`);if(state.resort.duels.every(d=>d.done)){if(state.resort.leftoverId&&!state.resort.catchup){const opponent=rnd(state.participants.map(x=>x.id).filter(id=>id!==state.resort.leftoverId));state.resort.catchup={a:state.resort.leftoverId,b:opponent,discipline:randomDiscipline(state.resort.duels.map(d=>d.discipline)),winnerId:null,done:false};log(`Nachholduell: ${name(state.resort.leftoverId)} spielt gegen ${name(opponent)}. Nur ${name(state.resort.leftoverId)} kann +2 Wertungspunkte erhalten.`)}else if(!state.resort.leftoverId)finishResortPhase()}save();render()}
+function finishCatchup(winnerId){const c=state.resort?.catchup;if(!c||c.done||![c.a,c.b].includes(winnerId))return;snapshot('Nachholduell Ergebnis');c.winnerId=winnerId;c.done=true;if(winnerId===c.a){addScore(c.a,2,'resort',`Resort-Nachholduell: ${c.discipline}`,true);log(`Nachholduell: ${name(c.a)} gewinnt ${c.discipline} und erhält +2 Punkte.`)}else log(`Nachholduell: ${name(c.b)} gewinnt ${c.discipline}. ${name(c.a)} erhält keine Punkte; ${name(c.b)} hatte bereits sein Wertungsduell.`);finishResortPhase();save();render()}
+function finishResortPhase(){state.resort.done=true;prepareMK(2);state.phase='mk2_races';log('Resort-Runde abgeschlossen. Mario-Kart-Block 2 beginnt.')}
+function prepareFinal(){const rows=ranked(),groups=[];for(const row of rows){const key=`${row.total}|${row.wins}|${row.mk}`;let g=groups.find(x=>x.key===key);if(!g){g={key,rows:[]};groups.push(g)}g.rows.push(row)}const resolved=[];for(const g of groups){const part=g.rows.length>1?shuffled(g.rows):g.rows;if(g.rows.length>1)log(`Gleichstand in Punkten, Wertungssiegen und Mario-Kart-Punkten zwischen ${g.rows.map(x=>x.name).join(', ')} – Reihenfolge per Los entschieden.`);resolved.push(...part)}const qualifiers=resolved.slice(0,2).map(x=>x.id);state.final={qualifiers,discipline:randomDiscipline(),winnerId:null,done:false};state.phase='final';log(`Abschlussduell: ${name(qualifiers[0])} gegen ${name(qualifiers[1])} in ${state.final.discipline}.`)}
+function finishFinal(winnerId){if(!state.final||state.final.done||!state.final.qualifiers.includes(winnerId))return;snapshot('Abschlussduell Ergebnis');state.final.winnerId=winnerId;state.final.done=true;addScore(winnerId,3,'final',`Abschlussduell: ${state.final.discipline}`,true);log(`Abschlussduell: ${name(winnerId)} gewinnt ${state.final.discipline} und erhält +3 Punkte.`);const rows=totals().sort((a,b)=>b.total-a.total),top=rows[0]?.total??0,tied=rows.filter(x=>x.total===top).map(x=>x.id);if(tied.length===1){state.championId=tied[0];state.phase='complete';log(`Turniersieger: ${name(state.championId)} mit ${top} Punkten.`)}else prepareTiebreak(tied);save();render()}
+function prepareTiebreak(ids){const order=shuffled(ids);state.tiebreak={queue:order.slice(2),a:order[0],b:order[1],discipline:randomDiscipline(),rounds:[],championId:null};state.phase='tiebreak';log('Punktegleichstand auf Platz 1: Stechen beginnt. Reihenfolge wurde zufällig bestimmt.')}
+function finishTiebreak(winnerId){const t=state.tiebreak;if(!t||![t.a,t.b].includes(winnerId))return;snapshot('Stechen Ergebnis');t.rounds.push({a:t.a,b:t.b,discipline:t.discipline,winnerId});log(`Stechen: ${name(winnerId)} gewinnt ${t.discipline}.`);if(t.queue.length){t.a=winnerId;t.b=t.queue.shift();t.discipline=randomDiscipline(t.rounds.map(r=>r.discipline))}else{t.championId=winnerId;state.championId=winnerId;state.phase='complete';log(`Turniersieger nach Stechen: ${name(winnerId)}.`)}save();render()}
+function setRacePlace(blockNo,raceNo,playerId,place){
+  const mk=blockNo===1?state.mk1:state.mk2;
+  if(!mk||mk.done||!mk.activeIds.includes(playerId))return;
+  const race=raceNo===1?mk.race1:mk.race2;
+  const current=Number(race[playerId]||0);
+  if(current===place){delete race[playerId]}else{
+    for(const id of mk.activeIds){if(Number(race[id])===place)delete race[id]}
+    race[playerId]=place
+  }
+  save();renderFlow()
+}
+function updateSetupReady(){
+  const start=$('#startBtn'),box=$('#setupValidation'),add=$('#addPlayerBtn');
+  if(start)start.disabled=!setupValid();
+  if(box){box.className='notice '+(setupValid()?'ok':'warn');box.textContent=setupMessage()}
+  if(add)add.disabled=state.participants.length>=5
+}
+function undo(){if(!state.history.length)return;const h=state.history.pop(),remaining=state.history;state=h.state;state.history=remaining;save();render()}
+function progressIndex(){return({setup:0,mk1_races:1,mk1_challenge:1,resort:2,mk2_races:3,mk2_challenge:3,final:4,tiebreak:5,complete:5})[state.phase]??0}
+function renderProgress(){const labels=['Setup','Mario Kart 1','Resort-Runde','Mario Kart 2','Abschluss','Sieger'],idx=progressIndex();$('#progress').innerHTML='';labels.forEach((t,i)=>{const d=document.createElement('div');d.className='step '+(i<idx?'done':i===idx?'active':'');d.innerHTML=`<div class="n">${i+1}/6</div><div class="t">${t}</div>`;$('#progress').appendChild(d)})}
+function setupMessage(){if(state.participants.length<4)return`Noch ${4-state.participants.length} Person(en) bis zur Mindestzahl.`;if(state.participants.length>5)return'Maximal 5 Personen.';if(state.participants.some(x=>!clean(x.name)))return'Alle Namen müssen ausgefüllt sein.';if(!uniqueNames())return'Jeder Name darf nur einmal vorkommen.';if(state.disciplines.length<3)return'Mindestens 3 Resort-Disziplinen auswählen.';return`Bereit mit ${state.participants.length} Personen und ${state.disciplines.length} Resort-Disziplinen.`}
+function setupHTML(){const playerRows=state.participants.map((x,i)=>`<div class="player-row"><div class="seed">${i+1}</div><input class="input setup-name" data-field="player-name" data-id="${x.id}" value="${esc(x.name)}" maxlength="28" placeholder="Name ${i+1}" autocomplete="off"><button class="remove" data-action="remove-player" data-id="${x.id}" type="button" ${state.participants.length<=4?'disabled':''}>×</button></div>`).join('');const disciplines=DEFAULT_DISCIPLINES.map(d=>`<label class="check"><input type="checkbox" class="disc-check" data-field="discipline" value="${esc(d)}" ${state.disciplines.includes(d)?'checked':''}><span>${esc(d)}</span></label>`).join('');return`<div class="layout"><section class="panel pad stack"><div><h2>Teilnehmer</h2><p class="sub">Genau 4 oder 5 Personen. Namen müssen eindeutig sein.</p></div><div id="setupPlayers" class="players">${playerRows||'<div class="notice">Noch niemand eingetragen.</div>'}</div><div class="toolbar"><button id="addPlayerBtn" class="btn" data-action="add-player" type="button" ${state.participants.length>=5?'disabled':''}>+ 5. Person hinzufügen</button></div><div><h2 style="margin-bottom:8px">Wii Sports Resort – Disziplinen</h2><div class="disciplines">${disciplines}</div><p class="sub" style="margin-top:7px">Mindestens 3 auswählen.</p></div><button id="startBtn" class="btn primary" data-action="start" type="button" ${setupValid()?'':'disabled'}>Championship starten</button><div class="notice ${setupValid()?'ok':'warn'}">${setupMessage()}</div></section><aside class="panel pad stack"><div><h2>Turnierregeln</h2><p class="sub">Fest in v8.1 hinterlegt.</p></div><div class="rules"><div><b>Mario Kart:</b> 2 Rennen, 4/3/2/1 Punkte.</div><div><b>5 Personen:</b> Eine Person setzt pro Block aus und erhält 5 neutrale Durchschnittspunkte. In Block 2 setzt garantiert jemand anderes aus.</div><div><b>MK-Gleichstand:</b> bessere Platzierung in Rennen 2 entscheidet den Blockgewinner.</div><div><b>Sieger-Challenge:</b> MK-Gewinner wählt die Resort-Disziplin; Gegner wird zufällig gelost. Sieg = +2.</div><div><b>Resort-Runde:</b> zufällige Duelle, Sieg = +2. Bei 5 Personen bekommt die übrig gebliebene Person ein Nachholduell; nur sie kann dort +2 erhalten.</div><div><b>Abschluss:</b> Top 2 spielen eine zufällige Resort-Disziplin. Sieg = +3.</div><div><b>Gesamtgleichstand:</b> Resort-Stechen bis ein Sieger feststeht.</div></div></aside></div>`}
+function mkRaceHTML(blockNo){
+  const mk=blockNo===1?state.mk1:state.mk2;
+  function placeButtons(id,raceNo){
+    const current=Number((raceNo===1?mk.race1:mk.race2)?.[id]||0);
+    return [1,2,3,4].map(place=>`<button type="button" class="place-btn ${current===place?'selected':''}" data-action="race-place" data-block="${blockNo}" data-race="${raceNo}" data-player="${id}" data-place="${place}" aria-pressed="${current===place?'true':'false'}">${place}</button>`).join('');
+  }
+  const rows=mk.activeIds.map(id=>`<div class="race-player-card">
+    <div class="race-player-name">${esc(name(id))}</div>
+    <div class="race-picks">
+      <div class="race-pick-box"><div class="race-pick-title">Rennen 1 – Platz</div><div class="place-grid">${placeButtons(id,1)}</div></div>
+      <div class="race-pick-box"><div class="race-pick-title">Rennen 2 – Platz</div><div class="place-grid">${placeButtons(id,2)}</div></div>
+    </div>
+  </div>`).join('');
+  return `<div class="layout">
+    <section class="panel pad stack">
+      <div class="section-head"><div><h2>Mario-Kart-Block ${blockNo}</h2><p class="sub">Tippe für jeden Fahrer in beiden Rennen den Platz 1–4 an.</p></div><span class="version">4 / 3 / 2 / 1 Punkte</span></div>
+      ${mk.sitOutId?`<div class="sitout"><div><strong>${esc(name(mk.sitOutId))}</strong> setzt diesen Block aus.</div><div>+5 Punkte</div></div>`:''}
+      <div class="tablet-races">${rows}</div>
+      <button class="btn primary" data-action="complete-mk" data-block="${blockNo}" type="button">Mario-Kart-Block abschließen</button>
+      <div class="notice">Jeder Platz kann pro Rennen nur einmal vergeben werden. Wird ein belegter Platz erneut gewählt, wird er beim bisherigen Fahrer automatisch entfernt.</div>
+      <div class="notice">Bei Punktegleichstand entscheidet die bessere Platzierung im 2. Rennen.</div>
+    </section>
+    <aside class="panel pad">${standingsMini()}</aside>
+  </div>`;
+}
+function challengeHTML(blockNo){const mk=blockNo===1?state.mk1:state.mk2,ch=mk.challenge,opts=state.disciplines.map(d=>`<option value="${esc(d)}">${esc(d)}</option>`).join('');if(!ch.opponentId)return`<div class="layout"><section class="panel pad stack"><div><h2>Sieger-Challenge ${blockNo}</h2><p class="sub">${esc(name(mk.winnerId))} hat Mario Kart gewonnen.</p></div><div class="card"><label><span class="mini">Der Gewinner wählt eine Resort-Disziplin:</span><select id="challengeDiscipline${blockNo}" class="input" style="margin-top:6px"><option value="">Disziplin wählen…</option>${opts}</select></label></div><button class="btn primary" data-action="draw-opponent" data-block="${blockNo}" type="button">Gegner zufällig auslosen</button><div class="notice">Der Gegner wird aus allen anderen Turnierteilnehmern gelost.</div></section><aside class="panel pad">${standingsMini()}</aside></div>`;return`<div class="layout"><section class="panel pad stack"><div><h2>Sieger-Challenge ${blockNo}</h2><p class="sub">${esc(ch.discipline)} · Sieg = +2 Punkte</p></div><div class="challenge"><div class="choice">${esc(name(mk.winnerId))}</div><div class="vs">VS</div><div class="choice">${esc(name(ch.opponentId))}</div></div><div class="winner-buttons"><button class="btn primary" data-action="challenge-winner" data-block="${blockNo}" data-winner="${mk.winnerId}" type="button">${esc(name(mk.winnerId))} gewinnt</button><button class="btn primary" data-action="challenge-winner" data-block="${blockNo}" data-winner="${ch.opponentId}" type="button">${esc(name(ch.opponentId))} gewinnt</button></div></section><aside class="panel pad">${standingsMini()}</aside></div>`}
+function resortHTML(){const r=state.resort,duels=r.duels.map(d=>`<div class="duel"><div class="disc">${esc(d.discipline)} · +2 Punkte</div><div class="pair"><span>${esc(name(d.a))}</span><b>VS</b><span>${esc(name(d.b))}</span></div>${d.done?`<div class="notice ok" style="margin-top:9px">Sieger: ${esc(name(d.winnerId))}</div>`:`<div class="duel-actions"><button class="btn" data-action="resort-winner" data-duel="${d.id}" data-winner="${d.a}" type="button">${esc(name(d.a))}</button><button class="btn" data-action="resort-winner" data-duel="${d.id}" data-winner="${d.b}" type="button">${esc(name(d.b))}</button></div>`}</div>`).join('');let catchup='';if(r.catchup){const c=r.catchup;catchup=`<div class="panel pad stack"><div><h2>Nachholduell</h2><p class="sub">Nur ${esc(name(c.a))} kann hier +2 Wertungspunkte bekommen.</p></div><div class="duel"><div class="disc">${esc(c.discipline)}</div><div class="pair"><span>${esc(name(c.a))}</span><b>VS</b><span>${esc(name(c.b))}</span></div>${c.done?`<div class="notice ok" style="margin-top:9px">Sieger: ${esc(name(c.winnerId))}</div>`:`<div class="duel-actions"><button class="btn" data-action="catchup-winner" data-winner="${c.a}" type="button">${esc(name(c.a))}</button><button class="btn" data-action="catchup-winner" data-winner="${c.b}" type="button">${esc(name(c.b))}</button></div>`}</div><div class="notice">Der Gegner hatte bereits sein normales Wertungsduell. Gewinnt er, erhält er keine zusätzlichen Punkte.</div></div>`}return`<div class="stack"><div class="layout"><section class="panel pad stack"><div><h2>Wii Sports Resort – Zufallsrunde</h2><p class="sub">Begegnungen und Disziplinen wurden ausgelost.</p></div><div class="duels">${duels}</div>${r.leftoverId&&!r.catchup?`<div class="notice warn">${esc(name(r.leftoverId))} wartet auf das Nachholduell.</div>`:''}</section><aside class="panel pad">${standingsMini()}</aside></div>${catchup}</div>`}
+function finalHTML(){const f=state.final;return`<div class="layout"><section class="panel pad stack final-card"><div><h2>Abschlussduell</h2><p class="sub">Top 2 der Gesamtwertung · Sieg = +3 Punkte</p></div><div class="discipline">${esc(f.discipline)}</div><div class="challenge"><div class="choice">${esc(name(f.qualifiers[0]))}</div><div class="vs">VS</div><div class="choice">${esc(name(f.qualifiers[1]))}</div></div><div class="winner-buttons"><button class="btn primary" data-action="final-winner" data-winner="${f.qualifiers[0]}" type="button">${esc(name(f.qualifiers[0]))} gewinnt</button><button class="btn primary" data-action="final-winner" data-winner="${f.qualifiers[1]}" type="button">${esc(name(f.qualifiers[1]))} gewinnt</button></div><div class="notice">Finaleinzug bei Gleichstand: Gesamtpunkte → Wertungssiege → Mario-Kart-Punkte → Losentscheid.</div></section><aside class="panel pad">${standingsMini()}</aside></div>`}
+function tiebreakHTML(){const t=state.tiebreak;return`<div class="layout"><section class="panel pad stack final-card"><div><h2>Stechen um den Turniersieg</h2><p class="sub">Nach dem Abschlussduell herrscht Punktegleichstand.</p></div><div class="discipline">${esc(t.discipline)}</div><div class="challenge"><div class="choice">${esc(name(t.a))}</div><div class="vs">VS</div><div class="choice">${esc(name(t.b))}</div></div><div class="winner-buttons"><button class="btn primary" data-action="tiebreak-winner" data-winner="${t.a}" type="button">${esc(name(t.a))} gewinnt</button><button class="btn primary" data-action="tiebreak-winner" data-winner="${t.b}" type="button">${esc(name(t.b))} gewinnt</button></div>${t.queue.length?`<div class="notice warn">Danach wartet noch: ${t.queue.map(name).map(esc).join(', ')}.</div>`:''}</section><aside class="panel pad">${standingsMini()}</aside></div>`}
+function completeHTML(){const row=totals().find(x=>x.id===state.championId);return`<div class="stack"><div class="big-winner"><div class="mini">🏆 TURNIERSIEGER</div><div class="name">${esc(name(state.championId))}</div><div class="sub">${row?row.total:0} Gesamtpunkte</div></div><section class="panel pad"><div class="section-head"><div><h2>Endstand</h2><p class="sub">Das Championship ist abgeschlossen.</p></div></div>${standingsTable()}</section></div>`}
+function standingsMini(){return`<h2 style="margin-bottom:8px">Live-Tabelle</h2>${ranked().map((r,i)=>`<div class="stat" style="margin-bottom:7px"><div class="k">${i+1}. ${esc(r.name)}</div><div class="v">${r.total} P</div></div>`).join('')}`}
+function standingsTable(){const rows=ranked();return`<div class="table-wrap"><table class="score-table"><thead><tr><th>#</th><th>Name</th><th>Gesamt</th><th>MK</th><th>Wertungssiege</th></tr></thead><tbody>${rows.map((r,i)=>`<tr class="${i===0?'leader':''}"><td class="rank">${i+1}</td><td>${esc(r.name)}</td><td><b>${r.total}</b></td><td>${r.mk}</td><td>${r.wins}</td></tr>`).join('')}</tbody></table></div>`}
+function renderFlow(){const c=$('#flowContent');if(state.phase==='setup')c.innerHTML=setupHTML();else if(state.phase==='mk1_races')c.innerHTML=mkRaceHTML(1);else if(state.phase==='mk1_challenge')c.innerHTML=challengeHTML(1);else if(state.phase==='resort')c.innerHTML=resortHTML();else if(state.phase==='mk2_races')c.innerHTML=mkRaceHTML(2);else if(state.phase==='mk2_challenge')c.innerHTML=challengeHTML(2);else if(state.phase==='final')c.innerHTML=finalHTML();else if(state.phase==='tiebreak')c.innerHTML=tiebreakHTML();else if(state.phase==='complete')c.innerHTML=completeHTML()}
+function renderStandings(){$('#standingsContent').innerHTML=state.participants.length?standingsTable():'<div class="notice">Noch keine Teilnehmer.</div>'}
+function renderProtocol(){const list=[...state.protocol].reverse();$('#protocolContent').innerHTML=list.length?list.map(x=>`<div class="log-item"><div class="time">${localTime(x.time)}</div><div class="text">${esc(x.text)}</div></div>`).join(''):'<div class="notice">Noch keine Turnierereignisse.</div>'}
+function phaseLabel(){return({setup:'Setup',mk1_races:'Mario Kart 1',mk1_challenge:'Challenge 1',resort:'Resort-Runde',mk2_races:'Mario Kart 2',mk2_challenge:'Challenge 2',final:'Abschlussduell',tiebreak:'Stechen',complete:'Abgeschlossen'})[state.phase]||''}
+function render(){ $('#undoBtn').disabled=!state.history.length;$('#headerSub').textContent=state.started?`${state.participants.length} Personen · ${phaseLabel()}`:'Geführtes Turnier für 4–5 Personen';renderProgress();renderFlow();renderStandings();renderProtocol() }
+function exportFile(){const copy=clone(state);copy.history=[];const blob=new Blob([JSON.stringify(copy,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`Wii-Championship-v8.1-${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+async function importFile(file){try{const obj=JSON.parse(await file.text());if(!obj||obj.version!=='8.1'||!Array.isArray(obj.participants)||!Array.isArray(obj.scoreEvents))throw new Error();obj.history=[];state=obj;save();render()}catch{alert('Die Datei ist keine gültige Wii-Championship-v8.1-Datei.')}}
+function resetAll(){if(!confirm('Wirklich das komplette Championship-Turnier löschen?'))return;state=fresh();save();render();switchTab('flow')}
+function switchTab(tab){$$('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===tab));['flow','standings','protocol','settings'].forEach(v=>$('#view-'+v).classList.toggle('hidden',v!==tab))}
+document.addEventListener('click',e=>{
+  const tab=e.target.closest('.tab[data-tab]');
+  if(tab){switchTab(tab.dataset.tab);return}
+  const el=e.target.closest('[data-action]');
+  if(!el)return;
+  const a=el.dataset.action;
+  if(a==='add-player'){
+    if(state.participants.length<5){state.participants.push({id:uid(),name:''});save();render()}
+  }else if(a==='remove-player'){
+    if(state.participants.length>4){state.participants=state.participants.filter(x=>x.id!==el.dataset.id);save();render()}
+  }else if(a==='start'){startTournament()}
+  else if(a==='race-place'){setRacePlace(Number(el.dataset.block),Number(el.dataset.race),el.dataset.player,Number(el.dataset.place))}
+  else if(a==='complete-mk'){completeMK(Number(el.dataset.block))}
+  else if(a==='draw-opponent'){drawChallengeOpponent(Number(el.dataset.block))}
+  else if(a==='challenge-winner'){finishChallenge(Number(el.dataset.block),el.dataset.winner)}
+  else if(a==='resort-winner'){finishResortDuel(el.dataset.duel,el.dataset.winner)}
+  else if(a==='catchup-winner'){finishCatchup(el.dataset.winner)}
+  else if(a==='final-winner'){finishFinal(el.dataset.winner)}
+  else if(a==='tiebreak-winner'){finishTiebreak(el.dataset.winner)}
+});
+document.addEventListener('input',e=>{
+  if(e.target.matches('[data-field="player-name"]')){
+    const obj=p(e.target.dataset.id);if(obj)obj.name=clean(e.target.value,28);save();updateSetupReady()
+  }
+});
+document.addEventListener('change',e=>{
+  if(e.target.matches('[data-field="discipline"]')){
+    state.disciplines=$$('[data-field="discipline"]').filter(x=>x.checked).map(x=>x.value);save();updateSetupReady()
+  }
+});
+$('#undoBtn').addEventListener('click',undo);
+$('#exportQuickBtn').addEventListener('click',exportFile);
+$('#exportBtn').addEventListener('click',exportFile);
+$('#importInput').addEventListener('change',e=>{const f=e.target.files?.[0];e.target.value='';if(f)importFile(f)});
+$('#resetBtn').addEventListener('click',resetAll);
+load();render();if('serviceWorker'in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+})();
+</script>
+</body>
+</html>
