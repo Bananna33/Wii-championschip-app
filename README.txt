@@ -1,15 +1,19 @@
 WII CHAMPIONSHIP
 
-Aktuelle interne Version: 8.3
+Aktuelle interne Version: 8.4
 
-ÄNDERUNGEN
-- Nach einem abgeschlossenen Mario-Kart-Block steht die Wii-Sports-Sieger-Challenge jetzt ganz oben.
-- Die abgeschlossenen Mario-Kart-Ergebnisse rutschen darunter.
-- Während Mario Kart noch läuft, bleibt Mario Kart selbstverständlich oben.
-- Dateinamen enthalten ab jetzt keine Versionsnummer mehr.
-- GitHub-/PWA-Dateien bleiben bei jedem Update gleich benannt:
-  index.html
-  manifest.json
-  service-worker.js
-  icon-192.png
-  icon-512.png
+NEU IN 8.4
+- Mario-Kart-Aussetzer: rotieren / zufällig / immer dieselbe Person / pro Block manuell
+- Resort-Disziplinen: hinzufügen, umbenennen, deaktivieren, löschen, Reihenfolge ändern
+- Disziplinen einzeln fürs Finale erlauben oder ausschließen
+- Punktesystem vollständig einstellbar
+- Challenge-Gegner: zufällig ohne direkte Wiederholung / komplett zufällig / manuell
+- Automatische Disziplinen: erst alle verwenden oder Wiederholungen erlauben
+- Finale: Top 2 fest, Disziplin zufällig oder manuell
+- Turniername
+- Animationen normal / reduziert / aus
+- Sicherheitsabfragen für Ergebnisse
+- Einstellungen auch während eines laufenden Turniers verfügbar
+- Frühere v8-Spielstände werden migriert
+
+Dateinamen bleiben versionslos.
