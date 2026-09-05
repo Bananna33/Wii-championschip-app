@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b1020">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Wii Championship">
-<title>Wii Championship – v8.2</title>
+<title>Wii Championship – v8.3</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
@@ -157,7 +157,7 @@ h2{font-size:1.08rem}
   <div>
     <div class="title-row">
       <h1>Wii Championship</h1>
-      <span class="version">v8.2</span>
+      <span class="version">v8.3</span>
       <span class="save" id="saveStatus">lokal gespeichert</span>
     </div>
     <p class="sub" id="headerSub">Geführtes Turnier für 4–5 Personen</p>
@@ -244,7 +244,7 @@ const STEP_LABELS={
 function uid(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4)}
 function fresh(){
   return {
-    version:'8.2',
+    version:'8.3',
     started:false,
     phase:'setup',
     participants:Array.from({length:4},()=>({id:uid(),name:''})),
@@ -271,7 +271,7 @@ function stageRank(stage){return ({mk1_races:1,mk1_challenge:2,resort:3,mk2_race
 
 function migrate(obj){
   if(!obj||!Array.isArray(obj.participants))return fresh();
-  obj.version='8.2';
+  obj.version='8.3';
   obj.history=Array.isArray(obj.history)?obj.history:[];
   obj.protocol=Array.isArray(obj.protocol)?obj.protocol:[];
   obj.scoreEvents=Array.isArray(obj.scoreEvents)?obj.scoreEvents:[];
@@ -732,47 +732,79 @@ function mkSummary(mk){
 function mkHTML(blockNo,readOnly){
   const mk=blockNo===1?state.mk1:state.mk2;
   if(!mk)return `<div class="notice">Diese Runde ist noch nicht verfügbar.</div>`;
+
   const stageCurrent=state.phase===`mk${blockNo}_races`;
   const interactive=!readOnly&&stageCurrent&&!mk.done;
+
   const playerCards=mk.activeIds.map(id=>`<div class="race-player-card">
     <div class="race-player-name">${esc(name(id))}</div>
     <div class="race-picks">
-      <div class="race-pick-box"><div class="race-pick-title">Rennen 1 – Platz</div><div class="place-grid">${raceButtons(mk,blockNo,id,1,!interactive)}</div></div>
-      <div class="race-pick-box"><div class="race-pick-title">Rennen 2 – Platz</div><div class="place-grid">${raceButtons(mk,blockNo,id,2,!interactive)}</div></div>
+      <div class="race-pick-box">
+        <div class="race-pick-title">Rennen 1 – Platz</div>
+        <div class="place-grid">${raceButtons(mk,blockNo,id,1,!interactive)}</div>
+      </div>
+      <div class="race-pick-box">
+        <div class="race-pick-title">Rennen 2 – Platz</div>
+        <div class="place-grid">${raceButtons(mk,blockNo,id,2,!interactive)}</div>
+      </div>
     </div>
   </div>`).join('');
 
   let challenge='';
   if(mk.done){
     const ch=mk.challenge;
+
     if(!ch.opponentId&&!readOnly){
       challenge=`<section class="card stack">
-        <div><h3>Sieger-Challenge</h3><p class="sub">${esc(name(mk.winnerId))} hat den Mario-Kart-Block gewonnen.</p></div>
-        <select id="challengeDiscipline${blockNo}" class="input"><option value="">Disziplin wählen…</option>${state.disciplines.map(d=>`<option value="${esc(d)}">${esc(d)}</option>`).join('')}</select>
+        <div>
+          <h3>Wii Sports Resort – Sieger-Challenge</h3>
+          <p class="sub">${esc(name(mk.winnerId))} hat den Mario-Kart-Block gewonnen und wählt jetzt die Disziplin.</p>
+        </div>
+        <select id="challengeDiscipline${blockNo}" class="input">
+          <option value="">Disziplin wählen…</option>
+          ${state.disciplines.map(d=>`<option value="${esc(d)}">${esc(d)}</option>`).join('')}
+        </select>
         <button class="btn primary" data-action="draw-opponent" data-block="${blockNo}" type="button">Gegner zufällig auslosen</button>
       </section>`;
     }else if(ch.opponentId){
       challenge=matchHTML({
         title:`Sieger-Challenge · ${ch.discipline}`,
-        a:mk.winnerId,b:ch.opponentId,winnerId:ch.winnerId,done:ch.done,
-        action:'challenge-winner',extra:`data-block="${blockNo}"`,points:'+2 Punkte',
+        a:mk.winnerId,
+        b:ch.opponentId,
+        winnerId:ch.winnerId,
+        done:ch.done,
+        action:'challenge-winner',
+        extra:`data-block="${blockNo}"`,
+        points:'+2 Punkte',
         interactive:!readOnly&&!ch.done&&state.phase===`mk${blockNo}_challenge`
       });
     }
   }
 
+  const marioKartSection=`<section class="card stack">
+    <div>
+      <h3>Mario Kart – Ergebnisse</h3>
+      <p class="sub">${mk.done?'Abgeschlossen':'2 Rennen · Plätze 1–4'}</p>
+    </div>
+    ${mk.sitOutId?`<div class="sitout"><div><strong>${esc(name(mk.sitOutId))}</strong> setzt diesen Block aus.</div><div>+5 Punkte</div></div>`:''}
+    <div class="tablet-races">${playerCards}</div>
+    ${interactive?`<button class="btn primary" data-action="complete-mk" data-block="${blockNo}" type="button">Mario-Kart-Block abschließen</button>`:''}
+    ${mk.done?`<div class="notice ok">Blockgewinner: <b>${esc(name(mk.winnerId))}</b></div>`:''}
+  </section>`;
+
   return `<div class="layout">
     <section class="panel pad stack">
       <div class="section-head">
-        <div><h2>Mario Kart ${blockNo}</h2><p class="sub">${readOnly?'Abgeschlossen · nur Ansicht':'2 Rennen + Sieger-Challenge'}</p></div>
+        <div>
+          <h2>Mario Kart ${blockNo} + Sieger-Challenge</h2>
+          <p class="sub">${readOnly?'Abgeschlossen · nur Ansicht':mk.done?'Jetzt folgt zuerst die Wii-Sports-Challenge.':'Zuerst werden die beiden Mario-Kart-Rennen gespielt.'}</p>
+        </div>
         ${readOnly?editButton(`mk${blockNo}`):''}
       </div>
-      ${mk.sitOutId?`<div class="sitout"><div><strong>${esc(name(mk.sitOutId))}</strong> setzt diesen Block aus.</div><div>+5 Punkte</div></div>`:''}
-      <div class="tablet-races">${playerCards}</div>
-      ${interactive?`<button class="btn primary" data-action="complete-mk" data-block="${blockNo}" type="button">Mario-Kart-Block abschließen</button>`:''}
-      ${mk.done?`<div class="notice ok">Blockgewinner: <b>${esc(name(mk.winnerId))}</b></div>`:''}
-      ${challenge}
+
+      ${mk.done ? `${challenge}${marioKartSection}` : `${marioKartSection}${challenge}`}
     </section>
+
     <aside class="panel pad stack">${liveTableHTML()}</aside>
   </div>`;
 }
@@ -951,7 +983,7 @@ function exportFile(){
   const copy=clone(state);copy.history=[];
   const blob=new Blob([JSON.stringify(copy,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob),a=document.createElement('a');
-  a.href=url;a.download=`Wii-Championship-v8.2-${new Date().toISOString().slice(0,10)}.json`;
+  a.href=url;a.download=`Wii-Championship-v8.3-${new Date().toISOString().slice(0,10)}.json`;
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 async function importFile(file){
